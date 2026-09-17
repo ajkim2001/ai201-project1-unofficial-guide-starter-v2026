@@ -3,19 +3,6 @@
 # Name: Alex Kim
 # Corpus: campus_life
 
-> **This file is your submission.** Fill it in as you go — most sections get
-> written during the milestone that produces them, not at the end.
->
-> How the starter works, and every command you'll need, is in `RUNNING.md`.
-> Leave that file alone.
->
-> **Paste everything as text.** No screenshots, no video. A typed table gets
-> full credit; a picture of the same table gets none.
->
-> Delete these instruction blocks as you replace them. The `<!-- -->` comments
-> are notes to you and don't show up when the page renders — you can leave them
-> or remove them.
-
 ---
 
 # Unit 1
@@ -28,10 +15,12 @@
 
      Milestone 5. -->
 
+This project will answer questions you have about campus life. It contains information, tips, and reviews about registration, classes, dining halls, housing dorms, transit, and more. Index your corpus with `python app.py index` and ask your question using `python app.py ask "question"`. The system will return an answer from the indexed corpus by using a one doc, one chunk strategy to collect the necessary context.
+
 ## Chunking Strategy
 
-**Chunk size:**
-**Overlap:**
+**Chunk size:** 600
+**Overlap:** 0
 
 <!-- What about YOUR documents made you pick these numbers? Short posts and
      long sectioned guides don't want the same chunking, and "800 seemed
@@ -42,6 +31,14 @@
      more than pretending you got it right first time.
 
      Milestone 3. -->
+
+     As we learned in lecture, a chunk should be "one focused topic, with enough context to answer the question."
+
+     Each document in campus_life contains the topic in the header. It is then followed by whatever relevant context is available for that particular topic.
+
+     I chose a one doc, one chunk strategy because I noticed that each document was the perfect size for a chunk to gain the appropriate context and find the answer. Cutting the document into pieces would only risk cutting the answer into pieces as well.
+
+     I was originally going to keep the 800 chunk size and the 120 overlap, but I saw no point as the largest document is 549 characters and I'm only having one chunk per document. Thus, I made the chunk size 600 (just over the largest character count) and no overlap between chunks.
 
 ## Sample Chunks
 
@@ -109,26 +106,28 @@ Laundry costs $1.75 wash, $1.75 dry, app-based. On noise: moderate; the building
      visible. Milestone 4. -->
 
 **Question:**
-
+About how many pages can you expect to read per week in HIST 118?
 **Answer:**
-
+You can expect to read about 120 pages a week in HIST 118 (Source: course_hist_118.txt and course_hist_118_workload.txt).
 ```
 ```
 
-**My relevance cutoff:**
+**My relevance cutoff:** 0.7
 
-<!-- The number you set in config.py, and how you got there.
-
-     You ran five questions your corpus covers and the five in OUT_OF_SCOPE
-     that it clearly doesn't, and wrote down the best distance for each. What
-     did those two groups look like? Where was the gap? Put the actual numbers
-     here — the table below wants all ten rows.
-
-     Milestone 4. -->
+It appears that the gap of the two groups is between 0.536 for in scope and 0.825 for out of scope. I took this information and set the relevance cutoff to 0.7 as it was closer to the midpoint between the two numbers than the default of 0.6.
 
 | Question | In corpus? | Best distance |
 |---|---|---|
-|  |  |  |
+| Until when can you add a course? | Yes | 0.4003 |
+| About how many pages can you expect to read per week in HIST 118? | Yes | 0.2493 |
+| How much does a laundry wash cost at Innisfree Hall? | Yes | 0.1623 |
+| How much does the campus shuttle cost for students? | Yes | 0.5360 |
+| Does the printing quota roll over after a semester? | Yes | 0.3609 |
+| What is the capital of Mongolia? | No | 0.825 |
+| How do I change the oil in a diesel engine? | No | 0.934 |
+| Who won the 1994 World Cup? | No | 0.886 |
+| What is the recommended dosage of ibuprofen for a headache? | No | 0.844 |
+| How do I write a for loop in Rust? | No | 0.896 |
 
 ## How I Used AI
 
@@ -142,9 +141,9 @@ Laundry costs $1.75 wash, $1.75 dry, app-based. On noise: moderate; the building
      Milestone 5. -->
 
 **1.**
-
+I asked Claude to fill out the table above using the run results from run_eval.py. I specified the location and format of the table as well as the 10 questions that it should pull from the results to populate the table. A simple data entry task that would have been busy work of copying and pasting. It returned that it found the 10 questions, found the placeholder table, filled the table, and gave me a rounded answer for the gap and cutoff. I changed the values back to unrounded for the gap and the cutoff to a more accurate midpoint.
 **2.**
-
+I asked Claude the benefits and disadvantages of splitting my documents into more than one chunk and gave my rationale that having each document be its own chunk seemed to work already. I then asked what I would do in split_documents if I wanted to keep the one doc, one chunk strategy. It gave me an example chunking function that I reviewed and told it to write in the code. I also asked it to confirm that it prints the correct produced_by and chunk count but it was going to run the wrong command and I halted it.
 <!-- ── Stretch features ─────────────────────────────────────────────────────
      Doing one? Say so here BEFORE you start. A feature this README never
      claims earns nothing.
