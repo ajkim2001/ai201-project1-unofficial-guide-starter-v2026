@@ -32,13 +32,13 @@ This project will answer questions you have about campus life. It contains infor
 
      Milestone 3. -->
 
-     As we learned in lecture, a chunk should be "one focused topic, with enough context to answer the question."
+As we learned in lecture, a chunk should be "one focused topic, with enough context to answer the question."
 
-     Each document in campus_life contains the topic in the header. It is then followed by whatever relevant context is available for that particular topic.
+Each document in campus_life contains the topic in the header. It is then followed by whatever relevant context is available for that particular topic.
 
-     I chose a one doc, one chunk strategy because I noticed that each document was the perfect size for a chunk to gain the appropriate context and find the answer. Cutting the document into pieces would only risk cutting the answer into pieces as well.
+I chose a one doc, one chunk strategy because I noticed that each document was the perfect size for a chunk to gain the appropriate context and find the answer. Cutting the document into pieces would only risk cutting the answer into pieces as well.
 
-     I was originally going to keep the 800 chunk size and the 120 overlap, but I saw no point as the largest document is 549 characters and I'm only having one chunk per document. Thus, I made the chunk size 600 (just over the largest character count) and no overlap between chunks.
+I was originally going to keep the 800 chunk size and the 120 overlap, but I saw no point as the largest document is 549 characters and I'm only having one chunk per document. Thus, I made the chunk size 600 (just over the largest character count) and no overlap between chunks.
 
 ## Sample Chunks
 
@@ -51,6 +51,7 @@ This project will answer questions you have about campus life. It contains infor
 
      Milestone 3. -->
 
+```
 ======================================================================
 Chunk 1  |  source: admin_add_drop_deadline.txt#0  |  produced by: chunker.py::split_documents
 ======================================================================
@@ -99,6 +100,7 @@ The good: the shared-bathroom-between-two-rooms arrangement is the best compromi
 The bad: no air conditioning, which matters for the first three weeks of September.
 
 Laundry costs $1.75 wash, $1.75 dry, app-based. On noise: moderate; the building is L-shaped and the short wing is much quieter.
+```
 
 ## Sample Answer
 
@@ -107,10 +109,9 @@ Laundry costs $1.75 wash, $1.75 dry, app-based. On noise: moderate; the building
 
 **Question:**
 About how many pages can you expect to read per week in HIST 118?
+
 **Answer:**
 You can expect to read about 120 pages a week in HIST 118 (Source: course_hist_118.txt and course_hist_118_workload.txt).
-```
-```
 
 **My relevance cutoff:** 0.7
 
@@ -141,8 +142,11 @@ It appears that the gap of the two groups is between 0.536 for in scope and 0.82
      Milestone 5. -->
 
 **1.**
+
 I asked Claude to fill out the table above using the run results from run_eval.py. I specified the location and format of the table as well as the 10 questions that it should pull from the results to populate the table. A simple data entry task that would have been busy work of copying and pasting. It returned that it found the 10 questions, found the placeholder table, filled the table, and gave me a rounded answer for the gap and cutoff. I changed the values back to unrounded for the gap and the cutoff to a more accurate midpoint.
+
 **2.**
+
 I asked Claude the benefits and disadvantages of splitting my documents into more than one chunk and gave my rationale that having each document be its own chunk seemed to work already. I then asked what I would do in split_documents if I wanted to keep the one doc, one chunk strategy. It gave me an example chunking function that I reviewed and told it to write in the code. I also asked it to confirm that it prints the correct produced_by and chunk count but it was going to run the wrong command and I halted it.
 <!-- ── Stretch features ─────────────────────────────────────────────────────
      Doing one? Say so here BEFORE you start. A feature this README never
