@@ -1,7 +1,8 @@
 # The Unofficial Guide
 
-# Name: Alex Kim
-# Corpus: campus_life
+Name: Alex Kim
+
+Corpus: campus_life
 
 ---
 
@@ -142,11 +143,9 @@ It appears that the gap of the two groups is between 0.536 for in scope and 0.82
      Milestone 5. -->
 
 **1.**
-
 I asked Claude to fill out the table above using the run results from run_eval.py. I specified the location and format of the table as well as the 10 questions that it should pull from the results to populate the table. A simple data entry task that would have been busy work of copying and pasting. It returned that it found the 10 questions, found the placeholder table, filled the table, and gave me a rounded answer for the gap and cutoff. I changed the values back to unrounded for the gap and the cutoff to a more accurate midpoint.
 
 **2.**
-
 I asked Claude the benefits and disadvantages of splitting my documents into more than one chunk and gave my rationale that having each document be its own chunk seemed to work already. I then asked what I would do in split_documents if I wanted to keep the one doc, one chunk strategy. It gave me an example chunking function that I reviewed and told it to write in the code. I also asked it to confirm that it prints the correct produced_by and chunk count but it was going to run the wrong command and I halted it.
 <!-- ── Stretch features ─────────────────────────────────────────────────────
      Doing one? Say so here BEFORE you start. A feature this README never
